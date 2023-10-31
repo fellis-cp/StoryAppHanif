@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupView()
-        setupAction()
+
     }
 
     private fun setupView() {
@@ -47,10 +47,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun setupAction() {
-        binding.logoutButton.setOnClickListener {
-            viewModel.logout()
-        }
-    }
+
 
 }

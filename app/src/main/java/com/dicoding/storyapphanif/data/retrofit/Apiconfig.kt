@@ -1,4 +1,4 @@
-package com.dicoding.storyapphanif.retrofit
+package com.dicoding.storyapphanif.data.retrofit
 
 import com.dicoding.storyapphanif.BuildConfig
 import okhttp3.OkHttpClient

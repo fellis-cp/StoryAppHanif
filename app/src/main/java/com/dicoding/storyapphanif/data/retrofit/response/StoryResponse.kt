@@ -1,4 +1,4 @@
-package com.dicoding.storyapphanif.retrofit.Response
+package com.dicoding.storyapphanif.data.retrofit.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

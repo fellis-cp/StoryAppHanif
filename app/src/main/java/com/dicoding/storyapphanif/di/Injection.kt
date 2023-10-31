@@ -4,7 +4,7 @@ import android.content.Context
 import com.dicoding.storyapphanif.data.UserRepository
 import com.dicoding.storyapphanif.data.pref.UserPreference
 import com.dicoding.storyapphanif.data.pref.dataStore
-import com.dicoding.storyapphanif.retrofit.ApiConfig
+import com.dicoding.storyapphanif.data.retrofit.ApiConfig
 
 
 object Injection {

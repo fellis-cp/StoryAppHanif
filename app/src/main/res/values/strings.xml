@@ -9,9 +9,22 @@
     <string name="password">Password</string>
     <string name="message_login_page">Masukkan dulu datamu ya</string>
     <string name="title_login_page">Sudah siap untuk upgrade skill?</string>
-    <string name="name">Nama</string>
+    <string name="name">Name</string>
     <string name="message_main_page">Selamat Belajar di Dicoding.</string>
     <string name="greeting">Halo %1$s,</string>
     <string name="logout">Keluar</string>
+    <string name="invalid_email">Invalid Email Addres\n</string>
+    <string name="invalid_password">"Password nust not be less than eight characters "</string>
+    <string name="password_hint">Enter Your Password</string>
+    <string name="email_hint">Enter Your Email</string>
+    <string name="name_hint">Enter Your Name</string>
+    <string name="sample_description">Deskripsi</string>
+    <string name="sample_name">Nama\n</string>
+    <string name="story_image_desc">Story Image\n</string>
+    <string name="story_image">Image Story</string>
+    <string name="camera">Camera\n</string>
+    <string name="gallery">Gallery\n</string>
+    <string name="description_hint">Write your description here</string>
+    <string name="upload">Upload\n</string>
 
 </resources>
