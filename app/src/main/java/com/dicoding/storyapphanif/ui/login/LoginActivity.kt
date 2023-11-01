@@ -3,29 +3,68 @@ package com.dicoding.storyapphanif.ui.login
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.dicoding.storyapphanif.data.pref.UserModel
+import androidx.lifecycle.ViewModelProvider
+import com.dicoding.storyapphanif.R
+import com.dicoding.storyapphanif.data.Result
 import com.dicoding.storyapphanif.databinding.ActivityLoginBinding
 import com.dicoding.storyapphanif.ui.ViewModelFactory
 import com.dicoding.storyapphanif.ui.main.MainActivity
 
 class LoginActivity : AppCompatActivity() {
-    private val viewModel by viewModels<LoginViewModel> {
-        ViewModelFactory.getInstance(this)
-    }
+
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var loginViewModel: LoginViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupView()
+        val factory : ViewModelFactory = ViewModelFactory.getInstance(this)
+        loginViewModel = ViewModelProvider(this , factory)[LoginViewModel::class.java]
+
+        loginViewModel.responseLogin.observe(this) {
+            when (it) {
+                is Result.Loading -> {
+                    loadingVisible(true)
+                }
+                is Result.Success -> {
+                    loadingVisible(false)
+                    AlertDialog.Builder(this).apply {
+                        setTitle("Success")
+                        setMessage(getString(R.string.login_message))
+                        setCancelable(false)
+                        setPositiveButton(getString(R.string.dialog_positive)) { _, _ ->
+                            val intent = Intent(context, MainActivity::class.java)
+                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                            finish()
+                        }
+                        create()
+                        show()
+                    }
+                }
+                is Result.Error -> {
+                    AlertDialog.Builder(this).apply {
+                        setTitle(getString(R.string.login_failed_title))
+                        setMessage(getString(R.string.login_failed_dialog))
+                        create()
+                        show()
+                    }
+                    loadingVisible(false)
+                }
+            }
+        }
+
         setupAction()
+        setupView()
+
     }
 
     private fun setupView() {
@@ -43,21 +82,18 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            viewModel.saveSession(UserModel(email, "sample_token"))
-            AlertDialog.Builder(this).apply {
-                setTitle("Yeah!")
-                setMessage("Anda berhasil login. Sudah tidak sabar untuk belajar ya?")
-                setPositiveButton("Lanjut") { _, _ ->
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish()
+            binding.apply {
+                if (emailEditText.error.isNullOrEmpty() && passwordEditText.error.isNullOrEmpty()) {
+                    val email = emailEditText.text.toString().trim()
+                    val password = passwordEditText.text.toString().trim()
+                    loginViewModel.login(email, password)
                 }
-                create()
-                show()
             }
         }
     }
 
+    private fun loadingVisible(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
 }
+

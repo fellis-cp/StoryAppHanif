@@ -1,16 +1,21 @@
 package com.dicoding.storyapphanif.ui.login
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.dicoding.storyapphanif.data.Result
 import com.dicoding.storyapphanif.data.UserRepository
-import com.dicoding.storyapphanif.data.pref.UserModel
-import kotlinx.coroutines.launch
+import com.dicoding.storyapphanif.data.retrofit.response.LoginResponse
 
 
 class LoginViewModel(private val repository: UserRepository) : ViewModel() {
-    fun saveSession(user: UserModel) {
-        viewModelScope.launch {
-            repository.saveSession(user)
-        }
+    private val _responseLogin = MediatorLiveData<Result<LoginResponse>>()
+    val responseLogin : LiveData<Result<LoginResponse>> = _responseLogin
+
+
+    fun login(email : String , password : String){
+        val liveData = repository.loginStory(email, password)
+        _responseLogin.addSource(liveData){result -> _responseLogin.value = result}
     }
+
 }

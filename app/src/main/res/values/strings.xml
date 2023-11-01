@@ -26,5 +26,18 @@
     <string name="gallery">Gallery\n</string>
     <string name="description_hint">Write your description here</string>
     <string name="upload">Upload\n</string>
+    <string name="description">Description\n</string>
+    <string name="logout_dialog">Logout</string>
+    <string name="logout_message">"Are you sure want to logout ? "</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="login_message">You have succesfully Login</string>
+    <string name="dialog_positive">Next\n</string>
+    <string name="login_failed_title">Sorry!</string>
+    <string name="login_failed_dialog">Login Failed ! Check your email and password correctly</string>
+    <string name="register_fail">Register failed , please check and make sure enter the data correctly</string>
+    <string name="register_dialog_message">Your account is created</string>
+    <string name="dialog_positive_button">next</string>
+    <string name="detail_title">Detail</string>
 
 </resources>
