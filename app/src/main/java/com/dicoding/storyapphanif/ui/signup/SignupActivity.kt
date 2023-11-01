@@ -25,28 +25,15 @@ class SignupActivity : AppCompatActivity() {
         binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val factory : ViewModelFactory = ViewModelFactory.getInstance(this)
-        signupViewModel = ViewModelProvider(this , factory) [SignupViewModel::class.java]
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+        signupViewModel = ViewModelProvider(this, factory)[SignupViewModel::class.java]
 
-        signupViewModel.responseRegister.observe(this) {
-            when (it) {
-                is Result.Loading -> {
-                    loadingVisible(true)
-                }
+        signupViewModel.responseRegister.observe(this) { result ->
+            when (result) {
+                is Result.Loading -> loadingVisible(true)
                 is Result.Success -> {
                     loadingVisible(false)
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Success")
-                        setMessage(getString(R.string.register_dialog_message))
-                        setCancelable(false)
-                        setPositiveButton(getString(R.string.dialog_positive_button)) { _, _ ->
-                            val intent = Intent(context, LoginActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-                        create()
-                        show()
-                    }
+                    showSuccessDialog()
                 }
                 is Result.Error -> {
                     registerFailedToast()
@@ -87,17 +74,26 @@ class SignupActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadingVisible(isLoading : Boolean) {
+    private fun loadingVisible(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-
     }
 
-    private fun registerFailedToast () {
-        Toast.makeText(this , R.string.register_fail , Toast.LENGTH_SHORT).show()
+    private fun registerFailedToast() {
+        Toast.makeText(this, R.string.register_fail, Toast.LENGTH_SHORT).show()
     }
 
-
+    private fun showSuccessDialog() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Success")
+            setMessage(getString(R.string.register_dialog_message))
+            setCancelable(false)
+            setPositiveButton(getString(R.string.dialog_positive_button)) { _, _ ->
+                val intent = Intent(context, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            create()
+            show()
+        }
+    }
 }
-
-
-

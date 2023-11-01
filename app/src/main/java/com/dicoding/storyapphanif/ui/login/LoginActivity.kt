@@ -20,51 +20,24 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var loginViewModel: LoginViewModel
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val factory : ViewModelFactory = ViewModelFactory.getInstance(this)
-        loginViewModel = ViewModelProvider(this , factory)[LoginViewModel::class.java]
+        val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+        loginViewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
-        loginViewModel.responseLogin.observe(this) {
-            when (it) {
-                is Result.Loading -> {
-                    loadingVisible(true)
-                }
-                is Result.Success -> {
-                    loadingVisible(false)
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Success")
-                        setMessage(getString(R.string.login_message))
-                        setCancelable(false)
-                        setPositiveButton(getString(R.string.dialog_positive)) { _, _ ->
-                            val intent = Intent(context, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                            finish()
-                        }
-                        create()
-                        show()
-                    }
-                }
-                is Result.Error -> {
-                    AlertDialog.Builder(this).apply {
-                        setTitle(getString(R.string.login_failed_title))
-                        setMessage(getString(R.string.login_failed_dialog))
-                        create()
-                        show()
-                    }
-                    loadingVisible(false)
-                }
+        loginViewModel.responseLogin.observe(this) { result ->
+            when (result) {
+                is Result.Loading -> loadingVisible(true)
+                is Result.Success -> showSuccessDialog()
+                is Result.Error -> showErrorDialog()
             }
         }
 
-        setupAction()
         setupView()
-
+        setupAction()
     }
 
     private fun setupView() {
@@ -95,5 +68,31 @@ class LoginActivity : AppCompatActivity() {
     private fun loadingVisible(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
-}
 
+    private fun showSuccessDialog() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Success")
+            setMessage(getString(R.string.login_message))
+            setCancelable(false)
+            setPositiveButton(getString(R.string.dialog_positive)) { _, _ ->
+                val intent = Intent(context, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
+            }
+            create()
+            show()
+        }
+        loadingVisible(false)
+    }
+
+    private fun showErrorDialog() {
+        AlertDialog.Builder(this).apply {
+            setTitle(getString(R.string.login_failed_title))
+            setMessage(getString(R.string.login_failed_dialog))
+            create()
+            show()
+        }
+        loadingVisible(false)
+    }
+}
