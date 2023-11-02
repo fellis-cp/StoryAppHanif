@@ -39,5 +39,9 @@
     <string name="register_dialog_message">Your account is created</string>
     <string name="dialog_positive_button">next</string>
     <string name="detail_title">Detail</string>
+    <string name="upload_title">Upload\n</string>
+    <string name="upload_message">Upload Success</string>
+    <string name="empty_warning">No image selected</string>
+    <string name="desc_empty">Please fill out the description</string>
 
 </resources>

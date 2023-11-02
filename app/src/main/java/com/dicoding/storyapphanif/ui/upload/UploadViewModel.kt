@@ -13,13 +13,13 @@ import okhttp3.RequestBody
 
 class UploadViewModel (private val repository: UserRepository) : ViewModel(){
 
-    private val _responseUpload = MediatorLiveData<Result<UploadStoryResponse>> ()
-    val responseUpload : LiveData<Result<UploadStoryResponse>> = _responseUpload
+    private val _responseUploadStory = MediatorLiveData<Result<UploadStoryResponse>> ()
+    val responseUploadStory : LiveData<Result<UploadStoryResponse>> = _responseUploadStory
 
 
     fun uploadStory (token: String, file: MultipartBody.Part, description: RequestBody) {
         val liveData = repository.uploadStory(token, file, description)
-        _responseUpload.addSource(liveData){result -> _responseUpload.value = result}
+        _responseUploadStory.addSource(liveData){result -> _responseUploadStory.value = result}
     }
 
     fun getSession() : LiveData<UserModel> {

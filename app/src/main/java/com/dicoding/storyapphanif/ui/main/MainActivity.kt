@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-
         }
 
         viewModel.getSession().observe(this) { user ->
