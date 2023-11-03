@@ -154,7 +154,6 @@ class UploadActivity : AppCompatActivity() {
             if (description.isEmpty()) {
                 toastShow(getString(R.string.desc_empty))
             }
-
             val requestBody = description.toRequestBody("text/plain".toMediaType())
             val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
             val multipartBody = MultipartBody.Part.createFormData(
