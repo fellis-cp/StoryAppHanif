@@ -8,11 +8,12 @@
     tools:context=".ui.detail.DetailActivity">
 
     <ImageView
+
         android:id="@+id/iv_profile_photo"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="16dp"
-        android:transitionName="story_image"
+        android:transitionName="image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,6 +22,7 @@
         android:contentDescription="@string/story_image" />
 
     <TextView
+        android:transitionName="nama"
         android:textSize="24sp"
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
@@ -32,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
 
     <TextView
+        android:transitionName="deskripsi"
         android:textSize="16sp"
         android:id="@+id/tv_description"
         android:layout_width="wrap_content"

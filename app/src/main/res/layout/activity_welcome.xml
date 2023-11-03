@@ -18,6 +18,7 @@
         app:srcCompat="@drawable/welcome_image1" />
 
     <TextView
+        tools:alpha="100"
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -34,6 +35,7 @@
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
 
     <TextView
+        tools:alpha="100"
         android:id="@+id/descTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -49,6 +51,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
     <Button
+        tools:alpha="100"
         android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -62,6 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/descTextView" />
 
     <Button
+        tools:alpha="100"
         android:id="@+id/signupButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

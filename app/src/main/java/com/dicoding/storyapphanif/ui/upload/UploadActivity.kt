@@ -70,7 +70,7 @@ class UploadActivity : AppCompatActivity() {
                 is Result.Success -> {
                     loadingVisible(false)
                     AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
+                        setTitle("Success")
                         setMessage(getString(R.string.upload_message))
                         setCancelable(false)
                         setPositiveButton(getString(R.string.dialog_positive_button)) { _, _ ->

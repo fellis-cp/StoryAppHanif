@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:menu="@menu/main_menu"
-            app:title="My App" />
+            app:title="@string/app_name" />
     </com.google.android.material.appbar.AppBarLayout>
 
 

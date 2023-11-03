@@ -28,11 +28,15 @@
         android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal2"
-        app:srcCompat="@drawable/login_image1" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/login_image2" />
 
     <TextView
+        android:alpha="0"
+        tools:alpha="100"
         android:id="@+id/titleTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -49,6 +53,8 @@
         app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
 
     <TextView
+        android:alpha="0"
+        tools:alpha="100"
         android:id="@+id/messageTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -63,6 +69,8 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
     <TextView
+        android:alpha="0"
+        tools:alpha="100"
         android:id="@+id/emailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,6 +82,8 @@
         app:layout_constraintTop_toBottomOf="@+id/messageTextView" />
 
     <com.google.android.material.textfield.TextInputLayout
+        tools:alpha="100"
+        android:alpha="0"
         android:id="@+id/emailEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -96,6 +106,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:alpha="0"
+        tools:alpha="100"
         android:id="@+id/passwordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,6 +119,8 @@
         app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
+        tools:alpha="100"
+        android:alpha="0"
         android:id="@+id/passwordEditTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
@@ -130,6 +144,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:alpha="0"
+        tools:alpha="100"
         android:id="@+id/loginButton"
         android:layout_width="0dp"
         android:layout_height="64dp"
